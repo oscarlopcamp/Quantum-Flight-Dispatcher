@@ -1,5 +1,6 @@
 """Quantum Flight Dispatcher: API de comparación clásica y Grover."""
 
+import sys
 from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
@@ -7,7 +8,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 from optimizer import compare_searches
 
-ROOT = Path(__file__).parent
+ROOT = Path(getattr(sys, "_MEIPASS", Path(__file__).parent))
 app = FastAPI(title="Quantum Flight Dispatcher")
 app.mount("/static", StaticFiles(directory=ROOT / "static"), name="static")
 
